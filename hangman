@@ -1,0 +1,50 @@
+import random
+
+print('H A N G M A N')
+
+defined = ['python', 'java', 'kotlin', 'javascript']
+random.seed()
+guess = random.choice(defined)
+x = "-" * len(guess)
+lives = 8
+used_list = []
+
+print('Type "play" to play the game, "exit" to quit:')
+choice = input()
+for letter in 'Python':
+   if choice == 'play':
+      continue
+   if choice == "exit":
+      break
+while lives > 0:
+    print() 
+    print(x)
+    print("Input a letter: >")
+    guessed = input()
+    if len(guessed) != 1:
+      print("You should input a single letter")
+    elif guessed.isupper() == True or guessed.isalpha() == False:
+        print("It is not an ASCII lowercase letter") 
+    elif guessed in guess and guessed in x or guessed in used_list:
+        print("You already typed this letter")  
+    elif guessed not in guess:
+        lives -= 1  
+        print("No such letter in the word")
+    elif guessed in guess and guessed in x:
+        print("You already typed this letter")
+        lives -= 1        
+    elif guessed in guess:
+        for i in range(len(guess)):
+            if guessed == guess[i]:
+                listed_word = list(x)
+                listed_word[i] = guessed
+                x = "".join(listed_word)
+    used_list.append(guessed)
+
+if x == guess:
+        print("""You guessed the word!
+You survived!""")
+if x != guess:
+    print("You are hanged!")              
+else:
+    print()
